@@ -5,14 +5,14 @@
     <display-name>mywar</display-name>
     <description>Example of war file</description>
 
-    <!-- HW13 path to Spring cfg -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
+        <param-value>src\main\resourses\SpringBean.xml</param-value>
     </context-param>
-
-    <!-- HW13 Spring context load listener -->
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
     </listener>
 
     <servlet>

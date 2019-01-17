@@ -17,9 +17,9 @@ import ru.otus.hibernate.entity.DataSet;
 
 public class DBServiceHibernateImpl implements DBService {
     private final SessionFactory sessionFactory;
-    private ApplicationContext context = new ClassPathXmlApplicationContext("C:\\Users\\mitro\\Desktop\\programming\\MyWebServer-master\\src\\main\\resourses\\SpringBean.xml");
+    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resourses\\SpringBean.xml");
     @Autowired
-    private CacheEngine cache =  context.getBean("cache", CacheEngineImpl.class);
+    private CacheEngine cache = context.getBean("cache", CacheEngineImpl.class);
 
     public DBServiceHibernateImpl() {
         sessionFactory = createSessionFactory(HibernateConfiguration.setup());

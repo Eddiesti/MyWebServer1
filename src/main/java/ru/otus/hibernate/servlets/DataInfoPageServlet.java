@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataInfoPageServlet extends HttpServlet {
-    private ApplicationContext context = new ClassPathXmlApplicationContext("SpringBean.xml");
+    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resourses\\SpringBean.xml");
     private static Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
     @Autowired
     private DBServiceHibernateImpl service = context.getBean("service", DBServiceHibernateImpl.class);

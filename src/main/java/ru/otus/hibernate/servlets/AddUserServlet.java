@@ -27,7 +27,7 @@ import ru.otus.hibernate.service.DBServiceHibernateImpl;
 
 public class AddUserServlet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
-    private ApplicationContext context = new ClassPathXmlApplicationContext("SpringBean.xml");
+    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resourses\\SpringBean.xml");
     @Autowired
     private DBService service = context.getBean("service",DBServiceHibernateImpl.class);
 
