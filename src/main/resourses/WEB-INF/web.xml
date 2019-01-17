@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app>
+
+    <display-name>mywar</display-name>
+    <description>Example of war file</description>
+
+    <!-- HW13 path to Spring cfg -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+    </context-param>
+
+    <!-- HW13 Spring context load listener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>addUser</servlet-name>
+        <servlet-class>ru.otus.hibernate.servlets.AddUserServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>dateInfoPage</servlet-name>
+        <servlet-class>ru.otus.hibernate.servlets.DataInfoPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addUser</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>dateInfoPage</servlet-name>
+        <url-pattern>/data_info.html</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

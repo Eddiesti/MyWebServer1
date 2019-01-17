@@ -1,0 +1,19 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="service" class="ru.otus.hibernate.service.DBServiceHibernateImpl">
+
+    </bean>
+
+    <bean id = "cache" class="ru.otus.hibernate.cache.CacheEngineImpl">
+        <constructor-arg name="maxElements" value="100"/>
+        <constructor-arg name="idleTimeMs" value="1000"/>
+        <constructor-arg name="isEternal" value="false"/>
+        <constructor-arg name="lifeTimeMs" value="1000" />
+    </bean>
+
+
+
+</beans>
