@@ -7,7 +7,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>src\main\resourses\SpringBean.xml</param-value>
+        <param-value>classpath:SpringBean.xml</param-value>
     </context-param>
     <listener>
         <listener-class>

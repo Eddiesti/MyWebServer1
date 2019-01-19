@@ -4,14 +4,15 @@ import org.hibernate.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.otus.hibernate.cache.CacheEngine;
-import ru.otus.hibernate.cache.CacheEngineImpl;
 import ru.otus.hibernate.cache.MyElement;
 import ru.otus.hibernate.entity.UserDataSet;
 import ru.otus.hibernate.service.DBServiceHibernateImpl;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,17 +21,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataInfoPageServlet extends HttpServlet {
-    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resourses\\SpringBean.xml");
     private static Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
     @Autowired
-    private DBServiceHibernateImpl service = context.getBean("service", DBServiceHibernateImpl.class);
+    private DBServiceHibernateImpl service;
+    @Autowired
+    TemplateProcessor templateProcessor;
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
+
     private CacheEngine cache = service.getCache();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("UTF-8");
         Map<String, Object> pageVariables = new HashMap<>();
-
-        TemplateProcessor templateProcessor = (TemplateProcessor) getServletContext().getAttribute("templateProcessor");
 
         pageVariables.put("count", service.getCountUsers());
 
@@ -43,8 +48,8 @@ public class DataInfoPageServlet extends HttpServlet {
                 if (cache.get(id) != null) {
                     pageVariables.put("name", service.getCache().get(id).toString());
                 } else {
-                    cache.put(new MyElement(id,userById));
-                    pageVariables.put("name",service.getCache().get(id).toString());
+                    cache.put(new MyElement(id, userById));
+                    pageVariables.put("name", service.getCache().get(id).toString());
                 }
             }
         } catch (ObjectNotFoundException ex) {

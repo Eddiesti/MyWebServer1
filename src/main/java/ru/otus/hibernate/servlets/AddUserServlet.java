@@ -4,6 +4,8 @@ package ru.otus.hibernate.servlets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.otus.hibernate.cache.CacheEngine;
 import ru.otus.hibernate.cache.CacheEngineImpl;
 import ru.otus.hibernate.cache.MyElement;
@@ -13,6 +15,7 @@ import ru.otus.hibernate.entity.UserDataSet;
 import ru.otus.hibernate.service.DBService;
 
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +26,16 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.otus.hibernate.service.DBServiceHibernateImpl;
 
 public class AddUserServlet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
-    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resourses\\SpringBean.xml");
     @Autowired
-    private DBService service = context.getBean("service",DBServiceHibernateImpl.class);
+    private DBService service;
+
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);

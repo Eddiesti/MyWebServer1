@@ -17,7 +17,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <webXml>C:\Users\mitro\Desktop\programming\MyWebServer-master\src\main\resourses\WEB-INF\web.xml</webXml>
+                    <webXml>C:\Users\mitro\Desktop\programming\MyWebServer-master\src\main\resources\WEB-INF\web.xml</webXml>
                     <webResources>
                         <resource>
                             <directory>html_resourses</directory>

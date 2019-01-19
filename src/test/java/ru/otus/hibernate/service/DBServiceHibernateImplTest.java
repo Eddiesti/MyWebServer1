@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.otus.hibernate.entity.AdressDataSet;
 import ru.otus.hibernate.entity.PhoneDataSet;
 import ru.otus.hibernate.entity.UserDataSet;
@@ -15,6 +17,8 @@ import static org.junit.Assert.*;
 
 
 public class DBServiceHibernateImplTest {
+//    private ApplicationContext context = new ClassPathXmlApplicationContext("SpringBean.xml");
+//
 //    private DBServiceHibernateImpl dbService = null;
 //    private UserDataSet userDataSet = null;
 //    private int ID = 0;
@@ -22,7 +26,7 @@ public class DBServiceHibernateImplTest {
 //    @Before
 //    public void init() {
 //        ID = 1;
-//        dbService = new DBServiceHibernateImpl();
+//        dbService = context.getBean("service", DBServiceHibernateImpl.class);
 //        PhoneDataSet phoneDataSet = new PhoneDataSet();
 //        PhoneDataSet phoneDataSet1 = new PhoneDataSet();
 //        phoneDataSet.setNumber("+79777777");

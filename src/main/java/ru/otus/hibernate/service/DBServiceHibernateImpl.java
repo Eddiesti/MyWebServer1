@@ -5,9 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import ru.otus.hibernate.cache.CacheEngine;
 import ru.otus.hibernate.cache.CacheEngineImpl;
 import ru.otus.hibernate.cache.MyElement;
@@ -17,9 +17,9 @@ import ru.otus.hibernate.entity.DataSet;
 
 public class DBServiceHibernateImpl implements DBService {
     private final SessionFactory sessionFactory;
-    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resourses\\SpringBean.xml");
-    @Autowired
-    private CacheEngine cache = context.getBean("cache", CacheEngineImpl.class);
+    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resources\\SpringBean.xml");
+
+    private CacheEngine cache = context.getBean("cache",CacheEngineImpl.class);
 
     public DBServiceHibernateImpl() {
         sessionFactory = createSessionFactory(HibernateConfiguration.setup());

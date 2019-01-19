@@ -3,9 +3,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="service" class="ru.otus.hibernate.service.DBServiceHibernateImpl">
-
-    </bean>
+    <bean id="service" class="ru.otus.hibernate.service.DBServiceHibernateImpl"/>
 
     <bean id = "cache" class="ru.otus.hibernate.cache.CacheEngineImpl">
         <constructor-arg name="maxElements" value="100"/>
@@ -14,6 +12,5 @@
         <constructor-arg name="lifeTimeMs" value="1000" />
     </bean>
 
-
-
+    <bean id = "templateProcessor" class="ru.otus.hibernate.servlets.TemplateProcessor"/>
 </beans>
