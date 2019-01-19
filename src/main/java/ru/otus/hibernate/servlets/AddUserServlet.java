@@ -2,6 +2,7 @@ package ru.otus.hibernate.servlets;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+@Configurable
 public class AddUserServlet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
     @Autowired

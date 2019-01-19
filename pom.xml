@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <build>
-        <finalName>mywar</finalName>
+        <finalName>ROOT</finalName>
 
         <plugins>
             <plugin>

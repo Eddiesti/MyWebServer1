@@ -4,6 +4,7 @@ import org.hibernate.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.otus.hibernate.cache.CacheEngine;
@@ -25,13 +26,13 @@ public class DataInfoPageServlet extends HttpServlet {
     @Autowired
     private DBServiceHibernateImpl service;
     @Autowired
-    TemplateProcessor templateProcessor;
+    private TemplateProcessor templateProcessor;
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
-
-    private CacheEngine cache = service.getCache();
+    @Autowired
+    private CacheEngine cache;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("UTF-8");

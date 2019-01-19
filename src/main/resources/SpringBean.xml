@@ -1,9 +1,12 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="service" class="ru.otus.hibernate.service.DBServiceHibernateImpl"/>
+    <bean id="service" class="ru.otus.hibernate.service.DBServiceHibernateImpl">
+        <constructor-arg ref = "cache">
+        </constructor-arg>
+    </bean>
 
     <bean id = "cache" class="ru.otus.hibernate.cache.CacheEngineImpl">
         <constructor-arg name="maxElements" value="100"/>

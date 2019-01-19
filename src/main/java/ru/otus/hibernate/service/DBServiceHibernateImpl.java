@@ -17,12 +17,13 @@ import ru.otus.hibernate.entity.DataSet;
 
 public class DBServiceHibernateImpl implements DBService {
     private final SessionFactory sessionFactory;
-    private ApplicationContext context = new ClassPathXmlApplicationContext("src\\main\\resources\\SpringBean.xml");
 
-    private CacheEngine cache = context.getBean("cache",CacheEngineImpl.class);
+    private CacheEngine cache;
 
-    public DBServiceHibernateImpl() {
+    public DBServiceHibernateImpl(CacheEngine cache) {
+        this.cache = cache;
         sessionFactory = createSessionFactory(HibernateConfiguration.setup());
+
     }
 
     private static SessionFactory createSessionFactory(Configuration configuration) {
